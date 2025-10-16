@@ -1,5 +1,6 @@
 import logo from "Assets/Images/logo.ico";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -16,8 +17,8 @@ function Home() {
           </h1>
         </div>
         <div className="flex items-center justify-center  text-center ">
-          <button class="btn btn-primary p-6 text-2xl text-white ">register</button>
-          <button class="btn btn-warning p-6 text-2xl mx-3 text-white ">login</button>
+          <button class="btn btn-primary p-6 text-2xl text-white "><Link to='/signup' >register</Link> </button>
+          <button class="btn btn-warning p-6 text-2xl mx-3 text-white "><Link to='/login'>login</Link></button>
         </div>
       </div>
     </div>
