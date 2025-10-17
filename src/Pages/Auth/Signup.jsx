@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "Redux/Slices/AuthSlice";
 
 export default function Signup() {
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
 
   const [signupDetails, setSignupDetails] = useState({
     username: '',
@@ -17,11 +21,26 @@ export default function Signup() {
     });
   }
 
-  function onFormSubmit (e) {
+  async function onFormSubmit (e) {
     e.preventDefault();
     // handle form submission logic here
-    console.log(signupDetails);
+    // console.log(signupDetails);
+    const response = await dispatch(signup(signupDetails));
+    if (response?.payload?.data) {
+      navigator('/login');
+    }
+    resetForm();
+    console.log(response);
   }
+
+  function resetForm() {
+    setSignupDetails({
+      username: '',
+      email: '',
+      password: '',
+    });
+  }
+
   return (
     <div className=" flex flex-col items-center justify-center h-screen gap-4">
       <div className="">
