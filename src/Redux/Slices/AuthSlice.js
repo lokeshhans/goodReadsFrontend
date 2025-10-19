@@ -44,11 +44,18 @@ export const signin = createAsyncThunk("Auth/signin", async (data) => {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.username = "";
+      state.token = "";
+      localStorage.clear();
+    },
+  },
   extraReducers: (builder) => {
     // Add any extra reducers if needed
     builder.addCase(signin.fulfilled, (state, action) => {
-      if (action.payload?.data) {
+      if (action?.payload?.data) {
         const recievedData = action.payload.data?.data;
         state.isLoggedIn = action?.payload?.data?.data != undefined;
         state.username = action?.payload?.data?.data?.username;
@@ -63,4 +70,5 @@ const authSlice = createSlice({
     });
   },
 });
+export const {logout} = authSlice.actions;
 export default authSlice.reducer;
