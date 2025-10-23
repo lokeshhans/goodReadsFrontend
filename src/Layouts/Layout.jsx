@@ -5,7 +5,7 @@ function Layout({children}) {
   return (
     <>
         <Navbar />
-        <div className='h-[90vh] flex justify-center items-start'>
+        <div className='min-h-[90vh] flex justify-center items-start'>
             <div className="w-8/10 ">
                 {children}
             </div>
